@@ -1,7 +1,7 @@
 pipeline {
          agent any
          parameters {
-            choiceParam('Environment', ['test', 'stage', 'prod'], 'Select environment')
+            
             choice(
                 name: 'Nodes',
                 choices:"Linux\nMac",
