@@ -1,21 +1,34 @@
 pipeline {
          agent any
+         parameters {
+            choice(
+                name: 'Nodes',
+                choices:"Linux\nMac",
+                description: "Choose Node!")
+            choice(
+                name: 'Versions',
+                choices:"3.4\n4.4",
+                description: "Build for which version?" )
+            string(
+                name: 'Path',
+                defaultValue:"/home/pencillr/builds/",
+                description: "Where to put the build!")
+         }
          stages {
-                 stage('Build') {
+            stage('Build') {
                  steps {
                      echo 'Hi, GeekFlare. Starting to build the App.'
                  }
-                 }
-                 stage('Test') {
+            }
+            stage('Test') {
                  steps {
                     input('Do you want to proceed?')
                  }
+            }
+            stage('Prod') {
+                 steps {
+                    echo "App is Prod Ready"
                  }
-                 stage('Prod') {
-                     steps {
-                                echo "App is Prod Ready"
-                              }
-
-              }
-}
+            }
+         }
 }
